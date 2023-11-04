@@ -3,7 +3,13 @@ body {
     margin-left: 0 !important;
     background-color: #1A1A1A;
     color: white;
+    min-height: 100vh !important;
     font-family: “Lato”, sans-serif;
+}
+
+footer {
+    position: absolute !important;
+    bottom: 0 !important;
 }
 
 .centered-body {
