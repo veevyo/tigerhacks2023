@@ -28,8 +28,9 @@ h1 {
     width: 100%;
 }
 
-.navbar-item {
+.navbar-brand {
     font-size: 1.5em;
+    font-family: "Comic Sans MS", "Comic Sans", cursive !important;
     float: left;
     display: block;
     text-align: center;
