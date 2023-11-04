@@ -69,7 +69,7 @@ async function test() {
     for (i = 0; i < movieTitles.length; i++) {
         
 
-
+        var link = document.createElement("a");
         var cardLeft = document.createElement("div");
         var cardRight = document.createElement("div");
         var h3 = document.createElement("h3");
@@ -82,13 +82,18 @@ async function test() {
         sub.className = "text-muted";
 
         h3.innerHTML = movieTitles[i];
+        link.href = `https://www.themoviedb.org/search/movie?query=${movieTitles[i]}&language=en-US&`
         sub.innerHTML = releases[i];
         poster.src = `https://image.tmdb.org/t/p/w185//${posterLinks[i]}`;
+        link.target = "_blank";
 
         cardLeft.appendChild(h3);
         cardLeft.appendChild(sub);
         cardLeft.appendChild(hr);
-        cardRight.appendChild(poster);
+        cardRight.appendChild(link);
+        link.appendChild(poster);
+        
+        //cardRight.appendChild(poster);
         document.getElementById("card").appendChild(cardLeft);
         document.getElementById("card").appendChild(cardRight);
 
