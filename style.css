@@ -1,4 +1,7 @@
 body {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
     padding-left: 0 !important;
     margin-left: 0 !important;
     background-color: #1A1A1A;
@@ -30,7 +33,6 @@ h1 {
 
 .navbar-brand {
     font-size: 1.5em;
-    font-family: "Comic Sans MS", "Comic Sans", cursive !important;
     float: left;
     display: block;
     text-align: center;
@@ -113,4 +115,8 @@ a:visited {
     border: none;
     color: white;
     padding: 5px;
+}
+
+footer {
+    margin-top: auto !important;
 }
