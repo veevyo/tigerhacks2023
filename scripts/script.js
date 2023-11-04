@@ -38,7 +38,7 @@ async function test() {
 
     for (i = 0; i < keywordsearch[0].results.length; i++) {
         movieTitles.push(keywordsearch[0].results[i].original_title);
-        releases.push(keywordsearch[0].results[i].release_date);
+        releases.push(keywordsearch[0].results[i].release_date.slice(0,4));
         posterLinks.push(keywordsearch[0].results[i].poster_path);
         //names.push(keywordsearch[0].results[i].name);
     }
