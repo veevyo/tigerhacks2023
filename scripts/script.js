@@ -10,10 +10,11 @@ const options = {
 var keywordsearch = [];
 var ids = [];
 var movies = [];
+var movieTitles = [];
 
-function test() {
+async function test() {
     let name = document.getElementById("name").value;
-    fetch(`https://api.themoviedb.org/3/search/keyword?query=${name}`, options)
+    await fetch(`https://api.themoviedb.org/3/search/keyword?query=${name}`, options)
     .then(response => response.json())
     .then(response => keywordsearch.push(response))
     //.then(response => console.log(response))
@@ -28,10 +29,10 @@ function test() {
         ids.push(keywordsearch[0].results[i].id);
     }
 
-    console.log(ids);
+    //console.log(ids);
 
     for (i = 0; i < ids.length; i++) {
-        fetch(`https://api.themoviedb.org/3/movie/${ids[i]}?language=en-US`, options)
+        await fetch(`https://api.themoviedb.org/3/movie/${ids[i]}?language=en-US`, options)
         .then(response => response.json())
         .then(response => movies.push(response))
         //.then(response => console.log(response))
@@ -39,6 +40,13 @@ function test() {
 
         console.log(movies);
     }
+
+    for (i = 0; i < movies.length; i++) {
+        movieTitles.push(movies[i].original_title);
+        console.log(movies[i]);
+    }
+
+    console.log(movieTitles);
     
 }
   
