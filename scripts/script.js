@@ -9,12 +9,16 @@ const options = {
 
 var keywordsearch = [];
 var ids = [];
+var names = [];
 var movies = [];
 var movieTitles = [];
+var releases = [];
 
 async function test() {
+    
+
     let name = document.getElementById("name").value;
-    await fetch(`https://api.themoviedb.org/3/search/keyword?query=${name}`, options)
+    await fetch(`https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US`, options)
     .then(response => response.json())
     .then(response => keywordsearch.push(response))
     //.then(response => console.log(response))
@@ -23,10 +27,12 @@ async function test() {
 
     //console.log(stuff);
 
-    //console.log(keywordsearch);
+    console.log(keywordsearch);
 
     for (i = 0; i < keywordsearch[0].results.length; i++) {
-        ids.push(keywordsearch[0].results[i].id);
+        movieTitles.push(keywordsearch[0].results[i].original_title);
+        releases.push(keywordsearch[0].results[i].release_date);
+        //names.push(keywordsearch[0].results[i].name);
     }
 
     //console.log(ids);
@@ -47,6 +53,27 @@ async function test() {
     }
 
     console.log(movieTitles);
+
+    
+
+    for (i = 0; i < movieTitles.length; i++) {
+        var div = document.createElement("div");
+        var h3 = document.createElement("h3");
+        var sub = document.createElement("small")
+
+        div.className = "card-body";
+        sub.className = "text-muted";
+
+        h3.innerHTML = movieTitles[i];
+        sub.innerHTML = releases[i];
+
+        div.appendChild(h3);
+        div.appendChild(sub);
+        document.getElementById("card").appendChild(div);
+        
+    }
+
+
     
 }
   
