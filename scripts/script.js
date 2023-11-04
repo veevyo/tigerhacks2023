@@ -14,6 +14,7 @@ var movies = [];
 var movieTitles = [];
 var releases = [];
 var posterLinks = [];
+var descs = [];
 
 async function test() {
     document.getElementById("card").innerHTML = "";
@@ -23,6 +24,7 @@ async function test() {
     movieTitles = [];
     releases = [];
     posterLinks = [];
+    descs = [];
 
     let name = document.getElementById("name").value;
     await fetch(`https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US`, options)
@@ -40,6 +42,7 @@ async function test() {
         movieTitles.push(keywordsearch[0].results[i].original_title);
         releases.push(keywordsearch[0].results[i].release_date.slice(0,4));
         posterLinks.push(keywordsearch[0].results[i].poster_path);
+        descs.push(keywordsearch[0].results[i].overview);
         //names.push(keywordsearch[0].results[i].name);
     }
 
@@ -76,11 +79,14 @@ async function test() {
         var sub = document.createElement("small")
         var hr = document.createElement("hr");
         var poster = document.createElement("img");
+        var desc = document.createElement("p");
+        var br = document.createElement("br");
 
         cardLeft.className = "col-md-3";
         cardRight.className = "col-md-3";
         sub.className = "text-muted";
 
+        desc.innerHTML = descs[i];
         h3.innerHTML = movieTitles[i];
         link.href = `https://www.themoviedb.org/search/movie?query=${movieTitles[i]}&language=en-US&`
         sub.innerHTML = releases[i];
@@ -90,6 +96,7 @@ async function test() {
         cardLeft.appendChild(h3);
         cardLeft.appendChild(sub);
         cardLeft.appendChild(hr);
+        cardLeft.appendChild(desc);
         cardRight.appendChild(link);
         link.appendChild(poster);
         
