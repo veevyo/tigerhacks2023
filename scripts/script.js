@@ -60,6 +60,7 @@ async function test() {
         var div = document.createElement("div");
         var h3 = document.createElement("h3");
         var sub = document.createElement("small")
+        var hr = document.createElement("hr");
 
         div.className = "card-body";
         sub.className = "text-muted";
@@ -69,7 +70,9 @@ async function test() {
 
         div.appendChild(h3);
         div.appendChild(sub);
+        div.appendChild(hr);
         document.getElementById("card").appendChild(div);
+
         
     }
 
