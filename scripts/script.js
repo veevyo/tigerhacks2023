@@ -7,18 +7,39 @@ const options = {
     }
 }
 
-var stuff = [];
+var keywordsearch = [];
+var ids = [];
+var movies = [];
 
 function test() {
     let name = document.getElementById("name").value;
     fetch(`https://api.themoviedb.org/3/search/keyword?query=${name}`, options)
     .then(response => response.json())
-    .then(response => stuff.push(JSON.stringify(response)))
-    .then(response => console.log(response))
+    .then(response => keywordsearch.push(response))
+    //.then(response => console.log(response))
     
     .catch(err => console.error(err));
 
-    console.log(stuff);
+    //console.log(stuff);
+
+    //console.log(keywordsearch);
+
+    for (i = 0; i < keywordsearch[0].results.length; i++) {
+        ids.push(keywordsearch[0].results[i].id);
+    }
+
+    console.log(ids);
+
+    for (i = 0; i < ids.length; i++) {
+        fetch(`https://api.themoviedb.org//movie/${ids[i]}`, options)
+        .then(response => response.json())
+        .then(response => movies.push(response))
+        //.then(response => console.log(response))
+        .catch(err => console.error(err));
+
+        console.log(movies);
+    }
+    
 }
   
 
