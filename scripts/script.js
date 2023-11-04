@@ -11,13 +11,14 @@ var stuff = [];
 
 function test() {
     let name = document.getElementById("name").value;
-    fetch('https://api.themoviedb.org/3/search/keyword?query=${name}', options)
+    fetch(`https://api.themoviedb.org/3/search/keyword?query=${name}`, options)
     .then(response => response.json())
-    .then(response => console.log(response))
     .then(response => stuff.push(JSON.stringify(response)))
+    .then(response => console.log(response))
+    
     .catch(err => console.error(err));
 
-    console.log(stuff[0]);
+    console.log(stuff);
 }
   
 
