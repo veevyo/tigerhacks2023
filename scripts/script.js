@@ -1,15 +1,23 @@
+
 const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZGE3OTI3M2MxZTMzNTcyMzE1N2JmZTQ0YTEzZjNhMCIsInN1YiI6IjY1NDU3NTMwMWFjMjkyMDBhYmQ4NDFhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WmAGa5131zPQHt-0okCVjDq66nwhuUuSySijS0M-GUU'
     }
-};
+}
+
+var stuff = [];
+
 function test() {
-    fetch('https://api.themoviedb.org/3/search/keyword?query=andrew', options)
+    let name = document.getElementById("name").value;
+    fetch('https://api.themoviedb.org/3/search/keyword?query=${name}', options)
     .then(response => response.json())
     .then(response => console.log(response))
+    .then(response => stuff.push(JSON.stringify(response)))
     .catch(err => console.error(err));
+
+    console.log(stuff[0]);
 }
   
 
