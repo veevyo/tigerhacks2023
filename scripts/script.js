@@ -13,13 +13,16 @@ var names = [];
 var movies = [];
 var movieTitles = [];
 var releases = [];
+var posterLinks = [];
 
 async function test() {
     document.getElementById("card").innerHTML = "";
+    document.getElementById("card-wrapper").style = "display: block !important;";
     keywordsearch = [];
     movies = [];
     movieTitles = [];
     releases = [];
+    posterLinks = [];
 
     let name = document.getElementById("name").value;
     await fetch(`https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US`, options)
@@ -36,6 +39,7 @@ async function test() {
     for (i = 0; i < keywordsearch[0].results.length; i++) {
         movieTitles.push(keywordsearch[0].results[i].original_title);
         releases.push(keywordsearch[0].results[i].release_date);
+        posterLinks.push(keywordsearch[0].results[i].poster_path);
         //names.push(keywordsearch[0].results[i].name);
     }
 
@@ -48,36 +52,45 @@ async function test() {
         //.then(response => console.log(response))
         .catch(err => console.error(err));
 
-        console.log(movies);
+        //console.log(movies);
     }
 
     for (i = 0; i < movies.length; i++) {
+        console.log(movies[i].results);
         movieTitles.push(movies[i].original_title);
-        console.log(movies[i]);
+        posterLinks.push(movies[i].results.poster_path);
+        //console.log(movies[i]);
     }
 
-    console.log(movieTitles);
-
+    //console.log(movieTitles);
+    //console.log(posterLinks);
     
 
     for (i = 0; i < movieTitles.length; i++) {
         
 
-        var div = document.createElement("div");
+
+        var cardLeft = document.createElement("div");
+        var cardRight = document.createElement("div");
         var h3 = document.createElement("h3");
         var sub = document.createElement("small")
         var hr = document.createElement("hr");
+        var poster = document.createElement("img");
 
-        div.className = "card-body";
+        cardLeft.className = "col-md-3";
+        cardRight.className = "col-md-3";
         sub.className = "text-muted";
 
         h3.innerHTML = movieTitles[i];
         sub.innerHTML = releases[i];
+        poster.src = `https://image.tmdb.org/t/p/w185//${posterLinks[i]}`;
 
-        div.appendChild(h3);
-        div.appendChild(sub);
-        div.appendChild(hr);
-        document.getElementById("card").appendChild(div);
+        cardLeft.appendChild(h3);
+        cardLeft.appendChild(sub);
+        cardLeft.appendChild(hr);
+        cardRight.appendChild(poster);
+        document.getElementById("card").appendChild(cardLeft);
+        document.getElementById("card").appendChild(cardRight);
 
         
     }
