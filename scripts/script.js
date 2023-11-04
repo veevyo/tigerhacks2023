@@ -1,4 +1,4 @@
-import { TmdbClient }  from '../lib/tmdb-js-1.0.3/src/tmdb-js/tmdb-js.js'
+import { TmdbClient }  from '../lib/tmdb-js-1.0.3/src/tmdb-js/tmdb-js'
 
 
 searchName = async function() {
