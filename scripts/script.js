@@ -31,7 +31,7 @@ function test() {
     console.log(ids);
 
     for (i = 0; i < ids.length; i++) {
-        fetch(`https://api.themoviedb.org//movie/${ids[i]}`, options)
+        fetch(`https://api.themoviedb.org/3/movie/${ids[i]}?language=en-US`, options)
         .then(response => response.json())
         .then(response => movies.push(response))
         //.then(response => console.log(response))
