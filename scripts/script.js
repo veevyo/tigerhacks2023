@@ -15,7 +15,11 @@ var movieTitles = [];
 var releases = [];
 
 async function test() {
-    
+    document.getElementById("card").innerHTML = "";
+    keywordsearch = [];
+    movies = [];
+    movieTitles = [];
+    releases = [];
 
     let name = document.getElementById("name").value;
     await fetch(`https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US`, options)
@@ -57,6 +61,8 @@ async function test() {
     
 
     for (i = 0; i < movieTitles.length; i++) {
+        
+
         var div = document.createElement("div");
         var h3 = document.createElement("h3");
         var sub = document.createElement("small")
